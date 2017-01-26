@@ -1,0 +1,28 @@
+<h1>The Wall</h1>
+<form action="/users/createpost" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="text" name='post' placeholder='Type your post content here.'> <br>
+  <input type="submit" name="submit" value="Post">
+</form>
+<% @posts.each do |post| %>
+<div id="wall" name ="posts">
+  <div id="post" name ="stuff">
+    <h3><%=post.user.username %> - <%=post.created_at %></h3>
+    <h3><%=post.content%></h3>
+   </div>
+   <div id="message" name = "messages">
+     <% post.messages.each do |message| %>
+     <h3><%=message.user.username %> - <%=message.created_at %></h3>
+     <h3><%=message.content%></h3>
+     <%end%>
+       <form action="/users/createcomment" method="post">
+         <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+         <input type="hidden" name="post_id" value="<%=post.id%>">
+         <input type="text" name='comment' placeholder='Comment here.'> <br>
+         <input type="submit" name="submit" value="Comment">
+       </form>
+   </div>
+</div>
+<%end%>
+
+<h3><a href="/users/loginpage">log out</a></h3>

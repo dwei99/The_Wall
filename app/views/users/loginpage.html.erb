@@ -1,0 +1,8 @@
+<h1>The Wall</h1>
+<form action="/users/loginuser" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="text" name='email' placeholder='email' required> <br>
+  <input type="text" name='password' placeholder='password' required> <br>
+  <input type="submit" value="Login"> <br>
+</form>
+<h3>New User? Head <a href="/users/new">here.</a></h3>
